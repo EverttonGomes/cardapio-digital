@@ -16,7 +16,8 @@ function App() {
         <div className="title-bar"><h1>Cardápio</h1></div>
           <div className="card-grid">
             {data?.map(foodData =>
-            <Card 
+            <Card
+              id={foodData.id}
               title = {foodData.title} 
               price = {foodData.price} 
               image = {foodData.image} 
@@ -25,7 +26,7 @@ function App() {
 
           </div>
           {isModalOpen && <CreateModal closeModal={handleOpenModal}/>}
-          <button onClick={handleOpenModal}>Novo</button>
+          <button onClick={handleOpenModal} id="create_button">Novo cadastro</button>
       </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useFoodDataMutate } from "../../hooks/useFoodDataMutate";
+import { useFoodDataAlter } from "../../hooks/useFoodDataAlter";
 import { FoodData } from "../../interface/foodData";
 
 interface InputProps{
@@ -21,20 +21,20 @@ const Input = ({ label, value, updateValue}: InputProps) => {
     )
 }
 
-export function CreateModal({ closeModal }: ModalProps){
+export function AlterModal({ closeModal, id, title, price, image }: ModalProps & FoodData){
 
-    const [title, setTitle] = useState("");
-    const [price,setPrice] = useState(0);
-    const [image,setImage] = useState("");
-    const { mutate, isSuccess, isLoading } = useFoodDataMutate();
+    const [obj_title, setTitle] = useState(title);
+    const [obj_price, setPrice] = useState(price);
+    const [obj_image, setImage] = useState(image);
+    const { mutate, isSuccess, isLoading } = useFoodDataAlter();
 
     const submit = () => {
-        var id = Number()
+
         const foodData: FoodData = {
-            id,
-            title,
-            price,
-            image
+            id: id,
+            title: obj_title,
+            price: obj_price,
+            image: obj_image
         }
         mutate(foodData)
     }
@@ -47,14 +47,14 @@ export function CreateModal({ closeModal }: ModalProps){
     return(
         <div className="modal-overlay">
             <div className="modal-body">
-                <h2>Cadastre um item no cardápio</h2>
+                <h2>Altere o item do cardápio</h2>
                 <form className="input-container">
-                    <Input label="title" value={title} updateValue={setTitle}/>
-                    <Input label="price" value={price} updateValue={setPrice}/>
-                    <Input label="image" value={image} updateValue={setImage}/>   
+                    <Input label="title" value={obj_title} updateValue={setTitle}/>
+                    <Input label="price" value={obj_price} updateValue={setPrice}/>
+                    <Input label="image" value={obj_image} updateValue={setImage}/>   
                 </form>
                 <button onClick={submit} className="button-secondary">
-                    {isLoading ? 'postando...' : 'postar'}
+                    {isLoading ? 'alterando...' : 'alterar'}
                 </button>
             </div>
         </div>

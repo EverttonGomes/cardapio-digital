@@ -14,3 +14,26 @@
     width: 250px;
     height: 200px;
 }
+
+.card .delete_btn {
+    background-color: #d81b02;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.1s linear 0.1s;
+}
+
+.card .alter_btn {
+    background-color: #0275d8;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.1s linear 0.1s;
+}
+
+.card button:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 7px 0px;
+    transform: scale(1.1);
+}
